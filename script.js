@@ -154,41 +154,39 @@ function fetchResults(e){
 
 
 
+    fetch(spiritUrl)
+    .then(function(result){
+            console.log(result);
+             return result.json();
+        })
+    .then(function(json){
+            displaySpirit(json);
+        });
 
-    // if (searchSelect.value == "Curiosity - (8/6/2012 - 5/12-21)"){
+    fetch(opportunityUrl)
+    .then(function(result){
+            console.log(result);
+            return result.json();
+        })
+    .then(function(json){
+            displayOpportunity(json);
+        });
+  
+    fetch(curiosityUrl)
+    .then(function(result){
+            console.log(result);
+            return result.json();
+        })
+    .then(function(json){
+            displayCuriosity(json);
+        });
 
-                fetch(curiosityUrl)
-                .then(function(result){
-                    console.log(result);
-                    return result.json();
-                })
-                .then(function(json){
-                    displayCuriosity(json);
-            });
+  
 
-    // } else if (searchSelect.value == "Opportunity - (1/25/2004 - 6/11/18)"){
 
-    //             fetch(opportunityUrl)
-    //             .then(function(result){
-    //                 console.log(result);
-    //                 return result.json();
-    //             })
-    //             .then(function(json){
-    //                 displayOpportunity(json);
-    //             });
-    // } else if (searchSelect.value == "Spirit - (1/4/2004 - 3/21/2010)") {
-    //             fetch(spiritUrl)
-    //             .then(function(result){
-    //                 console.log(result);
-    //                 return result.json();
-    //             })
-    //             .then(function(json){
-    //                 displaySpirit(json);
-    //             });
 
-    // } else {
-    //     console.log("Error");
-    // }
+
+
 
 }
 
