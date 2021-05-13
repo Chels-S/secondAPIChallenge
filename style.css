@@ -3,10 +3,14 @@
 
 /* PICTURE OF THE DAY STYLES */
 
+#potdSection {
+    margin-bottom: 100px;
+}
 
 
-/* MARS WEATHER STYLES */
+/* ROVER IMAGE STYLES */
 
-
-
-/* ROVER STYLES */
+/* .roverImages img {
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+} */
