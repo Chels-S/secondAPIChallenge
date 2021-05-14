@@ -35,10 +35,17 @@ let spiritUrl;
 
 
 // SEARCH FORM
-const earthDate = document.querySelector('.earth-date');
+// const earthDate = document.querySelector('.earth-date');
+const spiritDate = document.querySelector('.spirit-date');
+const opportunityDate = document.querySelector('.opportunity-date');
+const curiosityDate = document.querySelector('.curiosity-date');
 const solDate = document.querySelector('.sol-date');
 const searchForm = document.querySelector('form');
 const submitBtn = document.querySelector('.submit');
+const searchSpirit = document.querySelector('.spirit');
+const searchOpportunity = document.querySelector('.opportunity');
+const searchCuriosity = document.querySelector('.curiosity');
+
 // const searchSelect = document.querySelector('.form-select');
 
 
@@ -52,7 +59,10 @@ const submitBtn = document.querySelector('.submit');
 const section = document.querySelector('section');
 
 // searchSelect.addEventListener('submit', fetchResults);
-searchForm.addEventListener('submit', fetchResults);
+// searchForm.addEventListener('submit', fetchResults);
+searchSpirit.addEventListener('submit', fetchSpirit);
+searchOpportunity.addEventListener('submit', fetchOpportunity);
+searchCuriosity.addEventListener('submit', fetchCuriosity);
 
 
 
@@ -62,7 +72,7 @@ const roverSection = document.querySelector('.roverImages');
 console.log(potd);
 console.log(roverSection);
 
-const earthDateTemp = '2020-6-3'; // fix to be user input
+// const earthDateTemp = '2020-6-3'; // fix to be user input
 // need to make sure we implement a result for if no images were taken on that day
 // console.log(earthDateTemp);
 
@@ -138,41 +148,65 @@ console.log(dailyImgSection);
 
 */
 
-function fetchResults(e){
+
+
+
+// FETCH FUNCTIONS
+
+
+function fetchSpirit(e){
     e.preventDefault();
 
     console.log(e);
 
-
-    if (earthDate.value !== ''){
-        console.log(earthDate.value);
-        curiosityUrl = curiosityURL + '?earth_date=' + earthDate.value + '&api_key=' + nasaKey;
-        opportunityUrl = opportunityURL + '?earth_date=' + earthDate.value + '&api_key=' + nasaKey;
-        spiritUrl = spiritURL + '?earth_date=' + earthDate.value + '&api_key=' + nasaKey;
-
+    if (spiritDate.value == '') {
+        console.log('No earth date to load for Spirit.')
+        return;
     }
 
-
-
-    fetch(spiritUrl)
-    .then(function(result){
-            console.log(result);
-             return result.json();
-        })
-    .then(function(json){
-            displaySpirit(json);
-        });
-
-    fetch(opportunityUrl)
+    fetch(spiritURL + '?earth_date=' + spiritDate.value + '&api_key=' + nasaKey)
     .then(function(result){
             console.log(result);
             return result.json();
         })
-    .then(function(json){
-            displayOpportunity(json);
-        });
-  
-    fetch(curiosityUrl)
+        .then(function(json){
+            displaySpirit(json);
+    });     
+}
+
+
+function fetchOpportunity(e){
+    e.preventDefault();
+
+    console.log(e);
+
+    if (opportunityDate.value == ''){
+        console.log('No date found for Opportunity!');
+        return;
+    }
+
+    fetch(opportunityURL + '?earth_date=' + opportunityDate.value + '&api_key=' + nasaKey)
+    .then(function(result) {
+        console.log(result);
+        return result.json();
+    })
+    .then(function(json) {
+        displayOpportunity(json);
+    });
+}
+
+
+function fetchCuriosity(e){
+    e.preventDefault();
+
+    console.log(e);
+
+    if (curiosityDate.value == ''){
+        console.log('No date found for curiosity!');
+        return;
+    }
+
+    fetch(curiosityURL + '?earth_date=' + curiosityDate.value + '&api_key=' + nasaKey)
     .then(function(result){
             console.log(result);
             return result.json();
@@ -180,15 +214,38 @@ function fetchResults(e){
     .then(function(json){
             displayCuriosity(json);
         });
-
-  
-
-
-
-
-
-
 }
+
+
+
+
+// DISPLAY FUNCTIONS
+
+function displaySpirit(json){
+    console.log('Display Spirit Results', json);
+    while (roverSection.firstChild){
+        roverSection.removeChild(roverSection.firstChild);
+    }
+    
+    let photos = json.photos;
+    
+    if(photos.length === 0) {
+        console.log("No Results for this day")
+        return;
+    }
+
+    for (let i = 0; i < photos.length; i++){
+        
+        let photo = document.createElement('img');
+        
+        let current = photos[i];
+        
+        photo.src = current.img_src;
+        
+        roverSection.appendChild(photo);
+    }  
+}
+
 
 function displayOpportunity(json){
     console.log('Display Opportunity Results', json);
@@ -200,8 +257,10 @@ function displayOpportunity(json){
     
     if(photos.length === 0){
         console.log("No Results for this day")
-    }else {
-        for (let i = 0; i < photos.length; i++){
+        return;
+    }
+
+    for (let i = 0; i < photos.length; i++){
 
         let photo = document.createElement('img');
         
@@ -209,45 +268,11 @@ function displayOpportunity(json){
 
         photo.src = current.img_src;
 
-    
         roverSection.appendChild(photo);
-        
-
-        }
     }
-
-
 }
-function displaySpirit(json){
-    console.log('Display Spirit Results', json);
-    while (roverSection.firstChild){
-        roverSection.removeChild(roverSection.firstChild);
-    }
-
-    let photos = json.photos;
-
-    
-    if(photos.length === 0){
-        console.log("No Results for this day")
-    }else {
-        for (let i = 0; i < photos.length; i++){
-
-        let photo = document.createElement('img');
-        
-        let current = photos[i];
-
-        photo.src = current.img_src;
 
 
-        roverSection.appendChild(photo);
-    
-
-        }
-    }
-
-
-
-}
 function displayCuriosity(json){
     console.log('Display Curiosity Results', json);
     while (roverSection.firstChild){
@@ -256,11 +281,12 @@ function displayCuriosity(json){
 
     let photos = json.photos;
 
-    
     if(photos.length === 0){
         console.log("No Results for this day")
-    }else {
-        for (let i = 0; i < photos.length; i++){
+        return;
+    }
+
+    for (let i = 0; i < photos.length; i++){
 
         let photo = document.createElement('img');
         
@@ -268,15 +294,8 @@ function displayCuriosity(json){
 
         photo.src = current.img_src;
 
-       
         roverSection.appendChild(photo);
-        
-
-        }
     }
-
-
-
 }
 
 
@@ -321,3 +340,52 @@ function displayCuriosity(json){
     // }else {
     //     nav.style.display = 'none';
     // }
+
+
+    // function fetchResults(e){
+//     e.preventDefault();
+
+//     console.log(e);
+
+
+//     if (earthDate.value !== ''){
+//         console.log(earthDate.value);
+//         curiosityUrl = curiosityURL + '?earth_date=' + earthDate.value + '&api_key=' + nasaKey;
+//         opportunityUrl = opportunityURL + '?earth_date=' + earthDate.value + '&api_key=' + nasaKey;
+//         spiritUrl = spiritURL + '?earth_date=' + earthDate.value + '&api_key=' + nasaKey;
+
+//     }
+
+
+
+//     fetch(spiritUrl)
+//     .then(function(result){
+//             console.log(result);
+//              return result.json();
+//         })
+//     .then(function(json){
+//             displaySpirit(json);
+//         });
+
+//     fetch(opportunityUrl)
+//     .then(function(result){
+//             console.log(result);
+//             return result.json();
+//         })
+//     .then(function(json){
+//             displayOpportunity(json);
+//         });
+  
+//     fetch(curiosityUrl)
+//     .then(function(result){
+//             console.log(result);
+//             return result.json();
+//         })
+//     .then(function(json){
+//             displayCuriosity(json);
+//         });
+
+
+
+
+// }
