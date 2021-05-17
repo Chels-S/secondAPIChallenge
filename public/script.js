@@ -60,6 +60,7 @@ searchCuriosity.addEventListener('submit', fetchCuriosity);
 const dailyImgSection = document.querySelector('section');
 const potd = document.querySelector('#potdSection');
 const roverSection = document.querySelector('.roverImages');
+const noPhotos = document.querySelector('.results');
 console.log(potd);
 console.log(roverSection);
 
@@ -206,6 +207,7 @@ function fetchCuriosity(e){
     .then(function(json){
             displayCuriosity(json);
         });
+
 }
 
 
@@ -223,6 +225,9 @@ function displaySpirit(json){
     
     if(photos.length === 0) {
         console.log("No Results for this day")
+        let noResults = document.createElement('p')
+        noPhotos.appendChild(noResults);
+        noResults.innerText = "No images taken this day.";
         return;
     }
 
@@ -249,6 +254,9 @@ function displayOpportunity(json){
     
     if(photos.length === 0){
         console.log("No Results for this day")
+        let noResults = document.createElement('p')
+        noPhotos.appendChild(noResults);
+        noResults.innerText = "No images taken this day.";
         return;
     }
 
@@ -275,6 +283,9 @@ function displayCuriosity(json){
 
     if(photos.length === 0){
         console.log("No Results for this day")
+        let noResults = document.createElement('p')
+        noPhotos.appendChild(noResults);
+        noResults.innerText = "No images taken this day.";
         return;
     }
 
