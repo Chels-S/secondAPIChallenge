@@ -10,16 +10,39 @@
 </head>
 <body>
 
+
+  <div class="sticky-top">
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">NASA API </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <!-- <a class="nav-link active" aria-current="page" href="#">Home</a> -->
+            <a class="nav-link" href="#potdSection">Picture of the day</a>
+            <a class="nav-link" href="#roverSection">Mars Rovers</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </div>
+
+
+
     <!-- PICTURE OF THE DAY SECTION -->
     
     <div id = "potdSection">
 
     
         <section id = "potdBody">
-            <h2>Picture of the day!</h2>
+            <h2>Picture of the day: </h2>
             <img id ="dailyImage" src="">
         </section>
         
+      
         
     </div>
     
@@ -102,32 +125,27 @@
 
 
 
+        </div>
 
             <!-- </form> -->
 
             <!-- RESULTS SECTION -->
-            <div class="results">
+            <contianer id = "pictureResults" class = "pictureResults">
+
+              <div class="results">
+                <p>Here are your results! For testing Purposes</p>
                 <!-- Results Navigation -->
                 <!-- <nav>
-                    <button class="prev">Previous 10</button>
-                    <button class="next">Next 10</button>
+                  <button class="prev">Previous 10</button>
+                  <button class="next">Next 10</button>
                 </nav> -->
                 <!-- Results From Request -->
                 <section class= "roverImages">
-    
+                  
                 </section>
-            </div>
-
-
-    </div>
-
-
-
-
-
-
-
-
+              </div>
+              
+            </contianer>
 
 
 
@@ -135,28 +153,3 @@
     <script src='./script.js'></script>
 </body>
 </html>
-
-
-
-
-        <!-- <p>Which rover would you like to see images from?</p> -->
-
-     
-        
-            <!-- <select class="form-select" aria-label="Default select example"> -->
-                <!-- <option value="1">Curiosity - (8/6/2012 - 5/12-21)</option>
-                <option value="2">Opportunity - (1/25/2004 - 6/11/18)</option>
-                <option value="3">Spirit - (1/4/2004 - 3/21/2010)</option> -->
-            <!-- </select> -->
-
-                <!-- <p>
-                    <label for="earth-date" required>Select an Earth Date you'd like to see! </label>
-                    <input type="date" id="earth-date" class="earth-date" pattern="[0-9]{8}">
-                </p> -->
-                <!-- <p>
-                    <label for="sol-date">Select a SOL date you'd like to see!: </label>
-                    <input type="date" id="sol-date" class="sol-date" pattern="[0-9]{8}"> -->
-                <!-- </p> -->
-                <!-- <p>
-                    <button class="submit">Submit</button>
-                </p> -->

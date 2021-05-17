@@ -35,7 +35,6 @@ let spiritUrl;
 
 
 // SEARCH FORM
-// const earthDate = document.querySelector('.earth-date');
 const spiritDate = document.querySelector('.spirit-date');
 const opportunityDate = document.querySelector('.opportunity-date');
 const curiosityDate = document.querySelector('.curiosity-date');
@@ -46,20 +45,12 @@ const searchSpirit = document.querySelector('.spirit');
 const searchOpportunity = document.querySelector('.opportunity');
 const searchCuriosity = document.querySelector('.curiosity');
 
-// const searchSelect = document.querySelector('.form-select');
 
-
-
-// nav.style.display = 'none';
-
-// console.log(solDate);
 
 
 // RESULTS SECTION
 const section = document.querySelector('section');
 
-// searchSelect.addEventListener('submit', fetchResults);
-// searchForm.addEventListener('submit', fetchResults);
 searchSpirit.addEventListener('submit', fetchSpirit);
 searchOpportunity.addEventListener('submit', fetchOpportunity);
 searchCuriosity.addEventListener('submit', fetchCuriosity);
@@ -97,6 +88,7 @@ console.log(dailyImgSection);
 
 
 // PICTURE OF THE  DAY
+
     fetch(picUrl)
     .then (function (result){
         // console.log(result);
@@ -301,9 +293,7 @@ function displayCuriosity(json){
 
 
 
-// curiosityUrlTemp= `${curiosityURL}?earth_date=${earthDateTemp}&api_key=${nasaKey}`;
-    // opportunityUrl= `${opportunityURL}?earth_date=${earthDate}&api_key=${nasaKey}`;
-    // spiritUrl= `${spiritURL}?earth_date=${earthDate}&api_key=${nasaKey}`;
+// /8itUrl= `${spiritURL}?earth_date=${earthDate}&api_key=${nasaKey}`;
 
     // console.log(picUrl);
     // console.log(curiosityUrlTemp);
